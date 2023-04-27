@@ -20,6 +20,11 @@ export default defineConfig(async () => ({
       }
     }
   },
+  resolve: {
+    alias: {
+      "@": "/src",
+    }
+  },
 
   envPrefix: ["VITE_", "TAURI_"],
   build: {
