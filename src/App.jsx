@@ -5,14 +5,26 @@ import Login from "@/views/login/login.jsx";
 import Error404 from "@/views/error/404.jsx";
 import Error401 from "@/views/error/401.jsx";
 
+import RequireAuth from "@/components/requireAuth";
+
+import Home from "./views/home";
+
 function App() {
-  // console.log(myTimer)
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route path="*" element={<Error404 />} />
+      <Route
+        path="/"
+        element={
+          <RequireAuth>
+            {" "}
+            <Layout />
+          </RequireAuth>
+        }
+      >
+        <Route index element={<Home />} />
       </Route>
       <Route path="/login" element={<Login />}></Route>
+      <Route path="*" element={<Error404 />} />
     </Routes>
   );
 }
