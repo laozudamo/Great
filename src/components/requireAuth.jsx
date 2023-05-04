@@ -1,10 +1,10 @@
-import Login from "@/views/login/login.jsx";
+import Signin from "@/views/Sign/Signin.jsx";
 function RequireAuth({ children }) {
   const token = localStorage.getItem("token");
   if (token) {
     return children;
   } else {
-    return <Login></Login>;
+    return <Signin></Signin>;
   }
 }
 

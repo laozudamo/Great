@@ -1,5 +1,5 @@
 import axios from "axios";
-import store from "@/store";
+// import store from "@/store";
 import { message } from "antd";
 const info = (msg) => {
   message.error(msg);
@@ -7,8 +7,8 @@ const info = (msg) => {
 
 // create an axios instance
 const service = axios.create({
-  baseURL: "http://192.168.0.231:9001", // url = base url + request url
-  timeout: 3000, // request timeout
+  baseURL: "api",
+  timeout: 3000,
   headers: {
     "Content-Type": "application/json;charset=UTF-8",
   },
@@ -18,16 +18,15 @@ const service = axios.create({
 service.interceptors.request.use(
   (config) => {
     // Do something before request is sent
-    const token = localStorage.getItem("token");
-    if (token) {
-      config.headers["Token"] = token;
-    }
+    // const token = localStorage.getItem("token");
+    // if (token) {
+    //   config.headers["Token"] = token;
+    // }
     return config;
   },
   (error) => {
     // Do something with request error
     return Promise.reject(error);
-    console.log("请求", error);
   }
 );
 
@@ -38,17 +37,14 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response) => {
     const { code, msg } = response.data;
-    if (code !== 0) {
+    if (code !== 200) {
       info(msg);
-      if (code === 1030) {
-        store.user.resetToken();
-        window.location.reload();
-      }
     }
 
     return response.data;
   },
   (error) => {
+    console.log(error);
     if (error.code === "ECONNABORTED") {
       info("请求超时,请重试");
     }
