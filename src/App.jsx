@@ -19,7 +19,6 @@ function App() {
         path="/"
         element={
           <RequireAuth>
-            {" "}
             <Layout />
           </RequireAuth>
         }
@@ -29,6 +28,7 @@ function App() {
       <Route path="/signin" element={<Signin />}></Route>
       <Route path="/signup" element={<Signup />}></Route>
       <Route path="/forgetPwd" element={<ForgetPwd />}></Route>
+      <Route path="/error401" element={<Error401 />}></Route>
       <Route path="*" element={<Error404 />} />
     </Routes>
   );

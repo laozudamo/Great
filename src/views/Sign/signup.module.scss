@@ -1,0 +1,32 @@
+.thePage {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formBorder {
+  border: 3px solid #706b6e;
+  border-radius: 30px;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #706b6e;
+}
+
+.comfirmBtn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.link {
+  font-size: 10px;
+}
+
+.cacheWrap {
+  position: relative;
+}
+
+.refreshBtn {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

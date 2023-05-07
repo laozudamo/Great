@@ -10,16 +10,16 @@ export default defineConfig(async () => ({
   server: {
     strictPort: true,
     host: "0.0.0.0",
-    proxy: {
-      '/api': {
-        target: 'http://127.0.0.1:8081/v1',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
-        headers: {
-          'Access-Control-Allow-Origin': '*'
-        }
-      }
-    },
+    // proxy: {
+    //   '/api': {
+    //     target: 'http://127.0.0.1:8081/v1',
+    //     changeOrigin: true,
+    //     rewrite: (path) => path.replace(/^\/api/, ''),
+    //     headers: {
+    //       'Access-Control-Allow-Origin': '*'
+    //     }
+    //   }
+    // },
   },
   css: {
     modules: true,

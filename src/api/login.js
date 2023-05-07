@@ -14,3 +14,11 @@ export function getCache() {
     method: "GET",
   });
 }
+
+export function register(data) {
+  return service({
+    url: "/base/register",
+    method: "POST",
+    data,
+  });
+}
