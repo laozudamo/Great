@@ -3,6 +3,7 @@ import { ReloadOutlined } from "@ant-design/icons";
 import styles from "./signup.module.scss";
 import { useEffect, useState } from "react";
 import { getCache, register } from "@/api/login.js";
+import { useNavigate } from "react-router-dom";
 
 const onFinishFailed = (errorInfo) => {
   console.log("Failed:", errorInfo);
@@ -10,27 +11,25 @@ const onFinishFailed = (errorInfo) => {
 
 const Signin = () => {
   const [src, setSrc] = useState("");
+  const [captchaId, setCaptchaId] = useState("");
+  const nav = useNavigate();
 
-  const [form, setForm] = useState({
-    captchaId: "",
-    tel: "",
-    password: "",
-    checkPwd: "",
-    captcha: "",
-  });
-
-  const onFinish = (values) => {
-    console.log("Success:", values);
-    console.log(form);
+  const onFinish = async (values) => {
+    let form = {};
+    for (const key in values) {
+      form[key] = values[key];
+    }
+    form.captchaId = captchaId;
+    let { code, msg } = await register(form).catch((err) => console.log(err));
+    if (code === 200) {
+      nav("/signin");
+    }
   };
 
   async function sendCache() {
     let { data } = await getCache().catch((err) => console.log(err));
     setSrc(data.picPath);
-    setForm({
-      ...form,
-      captchaId: data.captchaId,
-    });
+    setCaptchaId(data.captchaId);
   }
 
   useEffect(() => {
