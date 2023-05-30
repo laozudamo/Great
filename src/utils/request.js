@@ -5,7 +5,6 @@ const info = (msg) => {
   message.error(msg);
 };
 
-// create an axios instance
 const service = axios.create({
   // baseURL: "http://127.0.0.1:8081/v1",
   baseURL: import.meta.env.VITE_BASE_API,
