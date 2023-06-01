@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import { observer } from "mobx-react-lite";
 import { useStore } from "@/store/index.js";
 
+// layout
 function Layout() {
   const store = useStore();
   return (
