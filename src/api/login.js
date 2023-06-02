@@ -1,5 +1,6 @@
 import service from "@/utils/request.js";
 
+// login
 export function login(data) {
   return service({
     url: "/user/login",
